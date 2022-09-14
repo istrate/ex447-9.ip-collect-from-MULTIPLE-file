@@ -1,3 +1,25 @@
+IP-Question-2:
+===============
+Collect ip and store in a file.
+Find project from  git clone https://github.com/rohitmeachu312/ex447-9.ip-collect-from-MULTIPLE-file.git
+
+Create collect ip playbook to filter ip address from files. 
+Save output in files with names ips and noip in /opt/ipdir in control node
+ip_file will have all 3 files name.
+
+[root@ansible ip2]# cat files.yml
+files:
+  - ips
+  - noip
+  
+[root@ansible ip2]# cat ips
+this is ip 192.168.10.11 and 192.156.23.1
+
+[root@ansible ip2]# cat noip
+this file has no ip
+
+##################################################################################################################
+
 ## before this playbook install module python3-netaddr.
 ## yum install python3-netaddr
 
