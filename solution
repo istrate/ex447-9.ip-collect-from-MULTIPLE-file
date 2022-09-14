@@ -36,6 +36,7 @@ this file has no ip
       file:
         path: /opt/ipdir
         state: directory
+        
     - name: Copy IP address
       copy:
         dest: "/opt/ipdr/{{ item }}.ip"
