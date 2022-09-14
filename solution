@@ -1,0 +1,23 @@
+## before this playbook install module python3-netaddr.
+## yum install python3-netaddr
+
+
+---
+- name: IP Address
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - files.yml
+  tasks:
+    tasks:
+    - name: create a dir
+      file:
+        path: /opt/ipdir
+        state: directory
+    - name: Copy IP address
+      copy:
+        dest: "/opt/ipdr/{{ item }}.ip"
+        content: "IPADDR={{ lookup('file',item).split() | ipaddr| unique| join(',')| default('none', true) }}"
+      loop: "{{ files }}"
+      
+
