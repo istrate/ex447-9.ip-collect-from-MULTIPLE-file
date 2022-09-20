@@ -40,7 +40,7 @@ this file has no ip
     - name: Copy IP address
       copy:
         dest: "/opt/ipdr/{{ item }}.ip"
-        content: "IPADDR={{ lookup('file',item).split() | ipaddr| unique| join(',')| default('none', true) }}"
+        content: "IPADDR={{lookup('file',item)|regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b')|unique|join(',')|default(‘none’,true)}}"
       loop: "{{ files }}"
       
 
