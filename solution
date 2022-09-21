@@ -20,8 +20,20 @@ this file has no ip
 
 ##################################################################################################################
 
-## before this playbook install module python3-netaddr.
-## yum install python3-netaddr
+
+---
+- name: gather ip
+  hosts: localhost
+  become: yes
+  vars_files:
+    - files.yml
+  tasks:
+    - name: copy ips and create file
+      copy:
+        dest: /home/ansible/{{item}}.ip
+        content: "IPADDR:{{lookup('file',item)|regex_findall('\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b')|unique|join(',')|default('none',true)}}"
+      loop: "{{ files }}"
+                                                                                                                                                                     
 
 
 ---
